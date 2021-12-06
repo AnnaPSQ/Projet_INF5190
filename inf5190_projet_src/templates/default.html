@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Vote nom" content="INF5190-TP1">
+    <!-- Mettre ici un lien vers les pages statiques qui seront utilisées par toutes les pages de votre application -->
+    <!-- Exemple : -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/somescript.js') }}">
+
+
+    <title>CMS</title>
+</head>
+
+<body>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>
