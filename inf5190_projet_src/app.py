@@ -5,6 +5,7 @@ from recuperation import get_db, importation_donnees_piscines, gestion_donnees_p
 from recuperation import importation_donnees_glissades, gestion_donnees_glissades
 from recuperation import importation_donnees_patinoires, gestion_donnees_patinoires
 from recuperation import importation_gestion_all
+from mail.mail import send_mail
 
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -12,6 +13,15 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 app.secret_key = "toto"
+
+app.config['SECRET_KEY'] = 'c4c287e37fd35eb88596cb2ec526b1e1'
+app.config['SECURITY_PASSWORD_SALT'] = '9d3ec01441ee8fc92f7c526d89acc604'
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'inf5190bertrand@gmail.com'
+app.config['MAIL_PASSWORD'] = 'linfOcch0uette'
 
 sched = BackgroundScheduler({'apscheduler.timezone': 'Canada/Eastern'}, deamon=True)
 sched.add_job(importation_gestion_all, 'cron', hour=0)
@@ -29,8 +39,9 @@ def page_not_found(error):
     return render_template("404.html"), 404
 
 @app.route('/')
-def home() :
-    
+def home():
+    prenom = "Anna"
+    # send_mail(prenom)
     return 'Hellooo'
 
 @app.route('/doc')

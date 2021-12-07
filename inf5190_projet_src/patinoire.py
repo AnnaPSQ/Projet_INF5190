@@ -1,22 +1,23 @@
 class Patinoire:
     def __init__(self, id, nom, nom_arrondissement,
-                 cle_arrondissement, date_maj_arrondissement,
-                 ouvert, deblaye, condition):
+                 date_maj, ouvert, deblaye,
+                 arrose, resurface):
         self.id = id
         self.nom = nom
         self.nom_arrondissement = nom_arrondissement,
-        self.cle_arrondissement = cle_arrondissement
-        self.date_maj_arrondissement = date_maj_arrondissement
+        self.date_maj = date_maj
         self.ouvert = ouvert
         self.deblaye = deblaye
-        self.condition = condition
+        self.arrose = arrose
+        self.resurface = resurface
         
     def asDictionary(self):
-        return {"id": self.id,
+        return {"installation": "patinoire",
+                "id": self.id,
                 "nom": self.nom,
                 "nom_arrondissement": self.nom_arrondissement,
-                "cle_arrondissement": self.cle_arrondissement,
-                "date_maj_arrondissement": self.date_maj_arrondissement,
+                "date_maj": self.date_maj,
                 "ouvert": self.ouvert,
                 "deblaye": self.deblaye,
-                "condition": self.condition}
+                "arrose": self.arrose,
+                "resurface": self.resurface}

@@ -12,7 +12,8 @@ class Glissade:
         self.condition = condition
         
     def asDictionary(self):
-        return {"id": self.id,
+        return {"installation": "glissade",
+                "id": self.id,
                 "nom": self.nom,
                 "nom_arrondissement": self.nom_arrondissement,
                 "cle_arrondissement": self.cle_arrondissement,

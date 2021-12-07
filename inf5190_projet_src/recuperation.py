@@ -70,13 +70,11 @@ def gestion_donnees_piscines():
     
     with open('piscines.csv', newline='') as csvfile:
         rows = csv.reader(csvfile, delimiter=',', quoting=csv.QUOTE_NONE)
-
+        nouvelles_piscines = []
         for row in rows:
             
             liste_indices = indices_donnees_piscine(row)
-            
             bonnes_donnees = arrangement_ligne(liste_indices, row)
-            
             id_uev = bonnes_donnees[0]
             # on passe la première ligne
             if id_uev.startswith('ID'):
@@ -88,8 +86,11 @@ def gestion_donnees_piscines():
                     get_db().insert_piscine(bonnes_donnees)
                 #on met à jour les données existantes
                 else:
-                    
+                    nouvelles_piscines.append(resultat)
                     get_db().update_piscine(bonnes_donnees)
+        if len(nouvelles_piscines != 0):
+            pass
+            #TODO envoyer mail
     csvfile.close()
 
 def importation_donnees_glissades():
@@ -133,6 +134,7 @@ def gestion_donnees_glissades():
         
         donnees = [nom, nom_arr, cle, date_maj, ouvert, deblaye, condition]
         resultat = get_db().get_glissade(nom)
+        #TODO Envoyer les nouveaux pas mail
         #on évite les doublons
         if len(resultat) == 0:
             get_db().insert_glissade(donnees)
@@ -209,6 +211,7 @@ def gestion_donnees_patinoires():
             donnees = replace_none_by_zeros(donnees)
             
             resultat = get_db().get_patinoire(donnees[0])
+            #TODO Envoyer les nouveaux pas mail
             #on évite les doublons
             if len(resultat) == 0:
                 get_db().insert_patinoire(donnees)

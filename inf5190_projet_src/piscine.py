@@ -18,7 +18,8 @@ class Piscine:
         
         
     def asDictionary(self):
-        return {"id": self.id,
+        return {"installation": "piscine",
+                "id": self.id,
                 "id_uev": self.id_uev,
                 "type": self.type,
                 "nom": self.nom,
