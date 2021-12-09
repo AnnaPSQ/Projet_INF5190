@@ -1,0 +1,46 @@
+{% extends "default.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    
+    {% include 'carroussel.html' %}
+    <br/>
+    <center>
+        <h1>Installations de Montréal</h1>
+        <p>Vous trouverez ici toutes les informations relatives aux piscines, glissades et patinoires de Montréal.</p>
+    </center>
+    <br/>
+    <div>
+        <form id = "formulaire" class="d-flex">
+          <input class="form-control me-2" name="arrondissement" type="string" required="true" placeholder="Recherche par arrondissement (exemple : LaSalle)" aria-label="Recherche par arrondissement">
+          <button class="btn btn-primary py-2 px-3" type="button" id="arr" onclick="get_installations();">Rechercher</button>
+        </form>
+    </div>
+    <br/>
+    <br/>
+
+    <center>
+    <div id="tableau">
+    </div>
+    </center>
+
+    <!-- <div>
+        <form id = "formulaire" class="d-flex">
+            <select id="champ-pays" name="pays">
+                <option value="">Aucun</option>
+                  {% for un_pays in pays %}
+                    <option value="{{ un_pays[0] }}">{{ un_pays[1] }}</li>
+                  {% endfor %}
+              </select>
+          <input class="form-control me-2" name="arrondissement" type="string" required="true" placeholder="Recherche par arrondissement (exemple : LaSalle)" aria-label="Recherche par arrondissement">
+          <button class="btn btn-primary py-2 px-3" type="button" id="arr" onclick="get_installations();">Rechercher</button>
+        </form>
+    </div> -->
+
+
+
+    <script src="../static/js/script.js">
+
+
+    </script>
+  
+{% endblock %}

@@ -97,6 +97,39 @@ types:
         resurface:
             type: number
             required: true
+/api:
+  /installations:
+    get:
+      description: Liste des installations renseignées dans la base de données.
+      queryParameters:
+        arrondissement:
+          description: Une chaîne de caractères qui donne le nom d'un arrondissement
+          type: string
+          required: true
+          example: LaSalle
+      responses:
+        200:
+          description: La liste des installations a été correctement envoyée.
+          body:
+            application/json:
+              type: List[dict]
+    /2021:
+      get:
+        description: Liste des installations mises à jour en 2021.
+        responses:
+          200:
+            body:
+              application/json:
+                type: List[dict]
+      /xml:
+        get:
+          description: Liste des installations mises à jour en 2021 au format xml.
+          responses:
+            200:
+              body:
+                application/xml:
+                  type: List[dict]
+
 
 /api:
   /person:

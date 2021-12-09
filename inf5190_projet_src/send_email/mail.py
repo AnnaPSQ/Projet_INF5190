@@ -14,7 +14,8 @@ def mail_address():
 def send_mail(data):
     source_address = "inf5190bertrand@gmail.com"
     destination_address = mail_address
-    body = "Voici les nouvelles installations ajoutées cette nuit : {}".format(data)
+    body = "Voici les nouvelles installations ajoutées cette nuit "
+    # : {}".format(data)"
     subject = "Nouvelles Installations !"
     
     msg = MIMEMultipart()
@@ -28,7 +29,7 @@ def send_mail(data):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(source_address, "secret123")
+    server.login(source_address, "linfOcch0uette")
     text = msg.as_string()
     server.sendmail(source_address, destination_address, text)
     server.quit()

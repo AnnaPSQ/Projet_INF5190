@@ -1,5 +1,5 @@
 class Glissade:
-    def __init__(self, id, nom, nom_arrondissement, 
+    def __init__(self, id, nom, nom_arrondissement,
                  cle_arrondissement, date_maj_arrondissement,
                  ouvert, deblaye, condition):
         self.id = id
@@ -10,7 +10,7 @@ class Glissade:
         self.ouvert = ouvert
         self.deblaye = deblaye
         self.condition = condition
-        
+
     def asDictionary(self):
         return {"installation": "glissade",
                 "id": self.id,

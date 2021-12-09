@@ -10,7 +10,7 @@ class Patinoire:
         self.deblaye = deblaye
         self.arrose = arrose
         self.resurface = resurface
-        
+
     def asDictionary(self):
         return {"installation": "patinoire",
                 "id": self.id,

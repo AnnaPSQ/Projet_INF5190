@@ -1,5 +1,5 @@
 class Piscine:
-    def __init__(self, id, id_uev, type, nom, 
+    def __init__(self, id, id_uev, type, nom,
                  nom_arrondissement, adresse, propriete,
                  gestion, point_x, point_y, equipement, long, lat):
         self.id = id
@@ -13,10 +13,9 @@ class Piscine:
         self.point_x = point_x
         self.point_y = point_y
         self.equipement = equipement
-        self.long= long
+        self.long = long
         self.lat = lat
-        
-        
+
     def asDictionary(self):
         return {"installation": "piscine",
                 "id": self.id,
