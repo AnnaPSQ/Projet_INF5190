@@ -30,6 +30,6 @@ def send_mail(data):
     server.ehlo()
     server.starttls()
     server.login(source_address, "linfOcch0uette")
-    text = msg.as_string()
+    text = msg.as_string
     server.sendmail(source_address, destination_address, text)
     server.quit()

@@ -10,9 +10,10 @@
     </center>
     <br/>
     <div>
+        <h5 class="modal-title">Veuillez saisir un arrondissement : </h5>
         <form id = "formulaire" class="d-flex">
-          <input class="form-control me-2" name="arrondissement" type="string" required="true" placeholder="Recherche par arrondissement (exemple : LaSalle)" aria-label="Recherche par arrondissement">
-          <button class="btn btn-primary py-2 px-3" type="button" id="arr" onclick="get_installations();">Rechercher</button>
+            <input class="form-control me-2" name="arrondissement" type="text" required placeholder="Recherche par arrondissement (exemple : LaSalle)" aria-label="Recherche par arrondissement">
+            <button class="btn btn-primary py-2 px-3" type="button" id="arr" onclick="get_installations();">Rechercher</button>
         </form>
     </div>
     <br/>
@@ -23,18 +24,24 @@
     </div>
     </center>
 
-    <!-- <div>
-        <form id = "formulaire" class="d-flex">
-            <select id="champ-pays" name="pays">
+    <br/>
+    <div>
+        <h5 class="modal-title">Sélectionnez une installation : </h5>
+        <form id = "formulaire_nom" class="d-flex">
+            <select id="champ-nom" name="nom" class="form-select" onChange="get_installation(this.value);">
                 <option value="">Aucun</option>
-                  {% for un_pays in pays %}
-                    <option value="{{ un_pays[0] }}">{{ un_pays[1] }}</li>
+                  {% for nom in noms %}
+                    <option value="{{ nom[0] }}">{{ nom[0] }}</option>
                   {% endfor %}
-              </select>
-          <input class="form-control me-2" name="arrondissement" type="string" required="true" placeholder="Recherche par arrondissement (exemple : LaSalle)" aria-label="Recherche par arrondissement">
-          <button class="btn btn-primary py-2 px-3" type="button" id="arr" onclick="get_installations();">Rechercher</button>
+            </select>
         </form>
-    </div> -->
+    </div>
+    <br/>
+
+    <center>
+    <div id="tableau_nom">
+    </div>
+    </center>
 
 
 

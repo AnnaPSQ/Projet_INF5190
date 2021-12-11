@@ -1,4 +1,11 @@
 class Patinoire:
+    """
+    Classe qui sert à la manipulation des données patinoires.
+    Les champs des objets patinoire sont les mêmes que les
+    champs de la table patinoires.
+    J'ai ajouté l'indication du type d'installation dans
+    le dictionnaire associé.
+    """
     def __init__(self, id, nom, nom_arrondissement,
                  date_maj, ouvert, deblaye,
                  arrose, resurface):

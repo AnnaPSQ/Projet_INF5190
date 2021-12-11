@@ -5,61 +5,61 @@ types:
   Piscines:
     properties:
         id:
-            type: int
+            type: number
             required: true
         id_uev:
-            type: varchar
+            type: string
             required: true
         type:
-            type: varchar
+            type: string
             required: true
         nom:
-            type: varchar
+            type: string
             required: true
         arrondissement:
-            type: varchar
+            type: string
             required: true
         adresse:
-            type: varchar
+            type: string
             required: true
         propriete:
-            type: varchar
+            type: string
             required: true
         gestion:
-            type: varchar
+            type: string
             required: true
         point_x:
-            type: varchar
+            type: string
             required: true
         point_y:
-            type: varchar
+            type: string
             required: true
         equipement:
-            type: varchar
+            type: string
             required: true
         long:
-            type: varchar
+            type: string
             required: true
         lat:
-            type: varchar
+            type: string
             required: true
 
   Glissades:
     properties:
         id:
-            type: int
+            type: number
             required: true
         nom:
-            type: varchar
+            type: string
             required: true
         nom_arrondissement:
-            type: varchar
+            type: string
             required: true
         cle_arrondissement:
-            type: varchar
+            type: string
             required: true
         date_maj_arrondissement:
-            type: varchar
+            type: string
             required: true
         ouvert:
             type: number
@@ -68,22 +68,22 @@ types:
             type: number
             required: true
         condition:
-            type: varchar
+            type: string
             required: true
   
   Patinoires:
     properties:
         id:
-            type: int
+            type: number
             required: true
         nom:
-            type: varchar
+            type: string
             required: true
         nom_arrondissement:
-            type: varchar
+            type: string
             required: true
         date_maj:
-            type: varchar
+            type: string
             required: true
         ouvert:
             type: number
@@ -96,6 +96,17 @@ types:
             required: true
         resurface:
             type: number
+            required: true
+  Installation:
+    properties:
+        id:
+            type: number
+            required: true
+        nom:
+            type: string
+            required: true
+        nom_arrondissement:
+            type: string
             required: true
 /api:
   /installations:
@@ -112,7 +123,7 @@ types:
           description: La liste des installations a été correctement envoyée.
           body:
             application/json:
-              type: List[dict]
+              types: Piscines, Glissades et Patinoires
     /2021:
       get:
         description: Liste des installations mises à jour en 2021.
@@ -120,7 +131,7 @@ types:
           200:
             body:
               application/json:
-                type: List[dict]
+                type: Glissades et Patinoires
       /xml:
         get:
           description: Liste des installations mises à jour en 2021 au format xml.
@@ -128,64 +139,27 @@ types:
             200:
               body:
                 application/xml:
-                  type: List[dict]
-
-
-/api:
-  /person:
+                  type: Glissades et Patinoires
+      /csv:
+        get:
+          description: Fichier csv des installations mises à jour en 2021.
+          responses:
+            200:
+              body:
+                file/csv:
+                  type: Installation
+  /installation:
     get:
-      description: Extract the data of all the persons.
+      description: Objet dictionnaire qui représente une installation.
+      queryParameters:
+        nom:
+          description: Une chaîne de caractères qui donne le nom de l'installation
+          type: string
+          required: true
+          example: Bain Quintal
       responses:
         200:
+          description: L'installation recherchée a été correctement envoyée.
           body:
             application/json:
-              type: ExistingPerson[]
-    post:
-      description: Create a new person.
-      body:
-        application/json:
-          type: NewPerson
-          example:
-            lastname: Jackson
-            firstname: Michael
-            age: 54
-      responses:
-        201:
-          description: The person was successfully created.
-          body:
-            application/json:
-              type: ExistingPerson
-              example:
-                id: 5
-                lastname: Jackson
-                firstname: Michael
-                age: 54
-    /{id}:
-      get:
-        description: Extract the data of one person, specified by it's id.
-        responses:
-          200:
-            body:
-              application/json:
-                type: ExistingPerson
-          404:
-            description: The specified identifier does not exist.
-      put:
-        description: Modify the data of one person, specified by it's id. It is not possible to change the id.
-        body:
-          application/json:
-            type: ExistingPerson
-        responses:
-          200:
-            body:
-              application/json:
-                type: ExistingPerson
-          404:
-            description: The specified identifier does not exist.
-      delete:
-        description: Delete completely the data of a person, specified by it's id.
-        responses:
-          200:
-            description: The person was deleted successfully.
-          404:
-            description: The specified identifier does not exist.
+              type: Installation

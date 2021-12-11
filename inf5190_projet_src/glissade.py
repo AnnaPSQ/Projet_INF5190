@@ -1,4 +1,11 @@
 class Glissade:
+    """
+    Classe qui sert à la manipulation des données glissades.
+    Les champs des objets glissade sont les mêmes que les
+    champs de la table glissades.
+    J'ai ajouté l'indication du type d'installation dans
+    le dictionnaire associé.
+    """
     def __init__(self, id, nom, nom_arrondissement,
                  cle_arrondissement, date_maj_arrondissement,
                  ouvert, deblaye, condition):

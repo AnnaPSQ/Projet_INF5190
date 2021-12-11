@@ -3,6 +3,7 @@ import csv
 from piscine import Piscine
 from glissade import Glissade
 from patinoire import Patinoire
+from installation import Installation
 
 
 class Database:
@@ -12,7 +13,8 @@ class Database:
 
     def get_connection(self):
         if self.connection is None:
-            self.connection = sqlite3.connect('db/database.db')
+            self.connection = sqlite3.connect('db/database.db',
+                                              check_same_thread=False)
         return self.connection
 
     def disconnect(self):
@@ -186,6 +188,19 @@ class Database:
                           instal[3], instal[4], instal[5], instal[6],
                           instal[7]) for instal in patinoires]
 
+    def get_installations_updated_in_2021(self):
+        connection = self.get_connection()
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT id, nom, nom_arrondissement FROM patinoires "
+            "WHERE date_maj LIKE '%2021%' "
+            "UNION SELECT id, nom, nom_arrondissement FROM glissades "
+            "WHERE date_maj_arrondissement LIKE '%2021%' "
+            "ORDER BY nom;")
+        installations = cursor.fetchall()
+        return [Installation(instal[0], instal[1], instal[2])
+                for instal in installations]
+
     def get_all_names(self):
         connection = self.get_connection()
         cursor = connection.cursor()
@@ -197,3 +212,19 @@ class Database:
         )
         nom = cursor.fetchall()
         return nom
+
+    def get_installation_by_name(self, nom):
+        connection = self.get_connection()
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT id, nom, nom_arrondissement FROM piscines "
+            "WHERE nom=? "
+            "UNION SELECT id, nom, nom_arrondissement FROM glissades "
+            "WHERE nom=? "
+            "UNION SELECT id, nom, nom_arrondissement FROM patinoires "
+            "WHERE nom=? "
+            "ORDER BY nom;",
+            (nom, nom, nom))
+        installation = cursor.fetchall()
+        return [Installation(instal[0], instal[1], instal[2])
+                for instal in installation]

@@ -23,6 +23,17 @@
         <condition>N/A</condition>
     </glissade>
     <glissade>
+        <nom>Aire de glissade, Mont-Royal</nom>
+        <arrondissement>
+            <nom_arr>Ville-Marie</nom_arr>
+            <cle>vma</cle>
+            <date_maj>2021-12-10 11:05:06</date_maj>
+        </arrondissement>
+        <ouvert></ouvert>
+        <deblaye>0</deblaye>
+        <condition>N/A</condition>
+    </glissade>
+    <glissade>
         <nom>Glissade, Parc Arthur-Therrien</nom>
         <arrondissement>
             <nom_arr>Verdun</nom_arr>
@@ -30,6 +41,39 @@
             <date_maj>2021-11-15 12:18:10</date_maj>
         </arrondissement>
         <ouvert>0</ouvert>
+        <deblaye>0</deblaye>
+        <condition>N/A</condition>
+    </glissade>
+    <glissade>
+        <nom>Glissade, Parc Beaubien</nom>
+        <arrondissement>
+            <nom_arr>Outremont</nom_arr>
+            <cle>out</cle>
+            <date_maj>2021-12-10 16:52:35</date_maj>
+        </arrondissement>
+        <ouvert></ouvert>
+        <deblaye></deblaye>
+        <condition>Mauvaise</condition>
+    </glissade>
+    <glissade>
+        <nom>Aire de glissade, Parc Confédération</nom>
+        <arrondissement>
+            <nom_arr>Côte-des-Neiges - Notre-Dame-de-Grâce</nom_arr>
+            <cle>cdn</cle>
+            <date_maj>2021-12-06 11:28:59</date_maj>
+        </arrondissement>
+        <ouvert></ouvert>
+        <deblaye>0</deblaye>
+        <condition>N/A</condition>
+    </glissade>
+    <glissade>
+        <nom>Aire de glissade, Parc Van-Horne</nom>
+        <arrondissement>
+            <nom_arr>Côte-des-Neiges - Notre-Dame-de-Grâce</nom_arr>
+            <cle>cdn</cle>
+            <date_maj>2021-12-06 11:28:59</date_maj>
+        </arrondissement>
+        <ouvert></ouvert>
         <deblaye>0</deblaye>
         <condition>N/A</condition>
     </glissade>

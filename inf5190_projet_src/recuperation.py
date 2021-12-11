@@ -4,16 +4,12 @@ réutilisées dans app.py pour la récupération des données
 
 import requests
 import csv
-from db.database import Database
 from flask import Flask, g
 import xml.etree.ElementTree as ET
+from db.database import Database
 
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        g._database = Database()
-    return g._database
+get_db = Database()
 
 
 def indices_donnees_piscine(row):
@@ -80,7 +76,7 @@ def gestion_donnees_piscines():
 
     with open('piscines.csv', newline='') as csvfile:
         rows = csv.reader(csvfile, delimiter=',', quoting=csv.QUOTE_NONE)
-        nouvelles_piscines = []
+        # nouvelles_piscines = []
         for row in rows:
 
             liste_indices = indices_donnees_piscine(row)
@@ -90,16 +86,17 @@ def gestion_donnees_piscines():
             if id_uev.startswith('ID'):
                 pass
             else:
-                resultat = get_db().get_piscine(id_uev)
+                resultat = get_db.get_piscine(id_uev)
                 # on évite les doublons
                 if len(resultat) == 0:
-                    get_db().insert_piscine(bonnes_donnees)
+                    get_db.insert_piscine(bonnes_donnees)
                 # on met à jour les données existantes
                 else:
-                    nouvelles_piscines.append(resultat)
-                    get_db().update_piscine(bonnes_donnees)
-        if len(nouvelles_piscines != 0):
-            pass
+                    # nouvelles_piscines.append(resultat)
+                    get_db.update_piscine(bonnes_donnees)
+
+        # if len(nouvelles_piscines != 0):
+        #     pass
             # TODO envoyer mail
     csvfile.close()
 
@@ -147,15 +144,14 @@ def gestion_donnees_glissades():
         condition = glissade.find('condition').text
 
         donnees = [nom, nom_arr, cle, date_maj, ouvert, deblaye, condition]
-        resultat = get_db().get_glissade(nom)
+        resultat = get_db.get_glissade(nom)
         # TODO Envoyer les nouveaux pas mail
         # on évite les doublons
         if len(resultat) == 0:
-            get_db().insert_glissade(donnees)
+            get_db.insert_glissade(donnees)
         # on met à jour les données existantes
         else:
-            print('true')
-            get_db().update_glissade(nom, donnees)
+            get_db.update_glissade(nom, donnees)
 
 
 def replace_none_by_zeros(liste):
@@ -230,20 +226,28 @@ def gestion_donnees_patinoires():
             donnees = del_unwanted(donnees)
             donnees = replace_none_by_zeros(donnees)
 
-            resultat = get_db().get_patinoire(donnees[0])
+            resultat = get_db.get_patinoire(donnees[0])
             # TODO Envoyer les nouveaux pas mail
             # on évite les doublons
             if len(resultat) == 0:
-                get_db().insert_patinoire(donnees)
+                get_db.insert_patinoire(donnees)
             # on met à jour les données existantes
             else:
-                get_db().update_patinoire(nom_pat, donnees)
+                get_db.update_patinoire(nom_pat, donnees)
 
 
 def importation_gestion_all():
     importation_donnees_piscines()
     gestion_donnees_piscines()
+    print("importation des données piscines terminée")
     importation_donnees_glissades()
     gestion_donnees_glissades()
+    print("importation des données glissades terminée")
     importation_donnees_patinoires()
     gestion_donnees_patinoires()
+    print("importation des données patinoires terminée")
+    print("importation des données terminée")
+
+
+if __name__ == '__main__':
+    importation_gestion_all()

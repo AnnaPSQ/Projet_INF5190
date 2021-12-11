@@ -1,4 +1,11 @@
 class Piscine:
+    """
+    Classe qui sert à la manipulation des données piscines.
+    Les champs des objets piscine sont les mêmes que les
+    champs de la table piscines.
+    J'ai ajouté l'indication du type d'installation dans
+    le dictionnaire associé.
+    """
     def __init__(self, id, id_uev, type, nom,
                  nom_arrondissement, adresse, propriete,
                  gestion, point_x, point_y, equipement, long, lat):
